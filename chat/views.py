@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.core import serializers
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
 from .models import Chat, Message
@@ -15,7 +17,10 @@ def index(request):
     if request.method == 'POST':
         print('Recived Data ' + request.POST['textmessage'])
         myChat = Chat.objects.get(id=1)
-        Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, reciever=request.user)
+        new_message = Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, reciever=request.user)
+        # message in JSON umwandeln und an Frontend geben
+        serialized_message = serializers.serialize('json', [new_message])
+        return JsonResponse(serialized_message[1:-1], safe=False)
     chatMessages = Message.objects.filter(chat__id=1)
     return render(request, 'chat/index.html', {'messages': chatMessages})
 

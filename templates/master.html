@@ -13,6 +13,24 @@
     <style>
         .hallo {
             color: grey;
+            min-width: 100px;
+        }
+        .red {
+            color: red;
+        }
+        .page-content{
+            margin: 100px 100px;
+            position: relative;
+            height: 600px;
+            width: 300px;
+            border: 1px solid black;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 20px 20px 80px 20px;
+            flex-direction: column;
+            overflow: hidden;
         }
     </style>
     <script>
@@ -23,27 +41,31 @@
             let token = '{{ csrf_token }}';
             form.append('textmessage', messageField.value);
             form.append('csrfmiddlewaretoken', token);
-            console.log(token);
             try {
-                messageContainer.innerHTML += `<div id="deleteMessage">
+                messageContainer.innerHTML += `<div id="deleteMessage" class="message-div">
                     <span class="hallo">[${date}]</span> {{ request.user.first_name }}: <span class="hallo">${messageField.value}</span>
                     </div>`;
-                await fetch('/chat/', {
+                let response = await fetch('/chat/', {
                     method: 'POST',
                     body: form
                 })
-
+                let json = await response.json();
                 
-                setTimeout(() => {
                     deleteMessage.remove();
-                    messageContainer.innerHTML += `<div>
+                    messageContainer.innerHTML += `<div class="message-div">
                         <span class="hallo">[${date}]</span> {{ request.user.first_name }}: ${messageField.value}
                         </div>`;
-                }, 1000);
                 
             } catch (error) {
                 console.error(error);
+                setTimeout(() => {
+                    deleteMessage.remove();
+                    messageContainer.innerHTML += `<div class="message-div">
+                        <span class="red">[${date}]</span> {{ request.user.first_name }}: ${messageField.value}
+                        </div>`;
+                }, 1000);
             }
+            messageField.value = '';
         }
         function formatDate(date) {
             let day = date.getDate();
@@ -60,7 +82,7 @@
 <body>
     
 <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mcenterdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
@@ -90,8 +112,18 @@
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">
+        <div class="phone-top"></div>
         {% block content %}
         {% endblock %}
+        <div class="phone-bottom">
+            <div class="phone-circle" >
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="logout-circle"></a>
+                {% else %}
+                <a class="mdl-navigation__link logout-circle" href="/login/"></a>
+            {% endif %}
+        </div>
+        </div>
         </div>
     </main>
   </div>

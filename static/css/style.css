@@ -1,9 +1,13 @@
 .page-content{
-    padding: 100px 100px
+    height: 600px;
+    width: 450px;
+    border: 1px solid black;
+    border-radius: 30px;
 }
 .login-form, .register-form{
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 400px;
     padding-bottom: 20px;
 }
@@ -11,9 +15,58 @@ button{
     border: none;
     background-color: aqua;
     color: black;
-    width: 100px;
     padding: 5px 5px;
 }
 .hallo{
     color: grey;
+}
+.phone-top{
+    position: absolute;
+    top: 0;
+    height: 20px;
+    border-radius: 0 0 5px 5px;
+    width: 30%;
+    background-color: black;
+}
+.phone-bottom{
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 0 0 30px 30px;
+    width: 100%;
+}
+.phone-circle {
+    width: 50px;
+    height: 50px;
+    border: 0.5px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+.logout-circle{
+    width: 50px;
+    display: inline-block;
+    height: 50px;
+    border-radius: 50%;
+}
+.messages-container{
+    margin-bottom: 20px;
+}
+.message-div{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+.send-button{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 3;
 }
