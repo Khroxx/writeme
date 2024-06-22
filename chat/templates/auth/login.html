@@ -1,0 +1,20 @@
+{%  extends "master.html" %}
+{% block content %}
+         {% if wrongPassword %}
+            <p>Benutzername oder Passwort ist falsch</p>
+          {% endif %}
+          <form action="/login/" method="POST" class="login-form">
+            {% csrf_token %}
+            <input type="hidden" name="redirect" value="{{ redirect }}">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input name="username" class="mdl-textfield__input" type="text" id="sample1">
+              <label class="mdl-textfield__label" for="sample1">Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input name="password" class="mdl-textfield__input" type="password" id="sample1">
+              <label class="mdl-textfield__label" for="sample1">Password</label>
+            </div>
+            <button>Login</button>
+          </form>
+          <p>Noch keinen Account? <a href="/register/">Registrieren</a>
+{% endblock %}

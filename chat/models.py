@@ -4,9 +4,11 @@ from datetime import date
 
 # Create your models here.
 
+# Chat Model im Backend adminbereich
 class Chat(models.Model):
     created_at = models.DateField(default=date.today)
 
+# Message Model im Backend adminbereich
 class Message(models.Model):
     text = models.CharField(max_length=500)
     created_at = models.DateField(default=date.today)

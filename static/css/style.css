@@ -1,0 +1,16 @@
+.page-content{
+    padding: 100px 100px
+}
+.login-form, .register-form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+
+}
+button{
+    border: none;
+    background-color: aqua;
+    color: black;
+    width: 100px;
+    padding: 5px 5px;
+}

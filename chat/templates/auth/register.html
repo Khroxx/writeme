@@ -1,0 +1,25 @@
+{%  extends "master.html" %}
+{% block content %}
+{% if usernameExists %}
+<p>Benutzer existiert bereits, wähle einen anderen Namen</p>
+{% elif passwordsNotEqual %}
+<p>Passwörter stimmen nicht überein</p>
+{% endif %}
+<form action="/register/" method="POST" class="register-form">
+    {% csrf_token %}
+    <input type="hidden" name="redirect" value="{{ redirect }}">
+    <div class="mdl-textfield mdl-js-textfield">
+      <input name="username" class="mdl-textfield__input" type="text" id="sample1">
+      <label class="mdl-textfield__label" for="sample1">Name</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input name="password" class="mdl-textfield__input" type="password" id="sample1">
+      <label class="mdl-textfield__label" for="sample1">Password</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+        <input name="password-again" class="mdl-textfield__input" type="password" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">Password again</label>
+      </div>
+    <button>Register</button>
+  </form>
+{% endblock %}
