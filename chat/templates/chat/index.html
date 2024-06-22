@@ -1,19 +1,23 @@
 {% extends "master.html" %}
 {% block content %}
 {% if request.user.is_authenticated %}
+<div id="messageContainer">
 {% for message in messages %}
-<div>
-  [{{ message.created_at }}] {{ message.author.first_name }}: {{ message.text }}
-</div>
+
+  <div>
+    [{{ message.created_at }}] {{ message.author.first_name }}: {{ message.text }}
+  </div>
+
 {% endfor %}
+</div>
 <!-- Accent-colored raised button with ripple -->
  <!-- Textfield with Floating Label -->
 
-<form action="/chat/" method="POST" >
+<form onsubmit="sendMessage(); return false;" method="POST" >
     {% csrf_token %}
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" name="textmessage" type="text" id="sample3">
-        <label class="mdl-textfield__label" for="sample3">Text...</label>
+        <input class="mdl-textfield__input" name="textmessage" type="text" id="messageField">
+        <label class="mdl-textfield__label" for="messageField">Text...</label>
     </div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         SEND
