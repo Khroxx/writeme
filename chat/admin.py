@@ -11,6 +11,8 @@ class MessageAdmin(admin.ModelAdmin):
 class ChatAdmin(admin.ModelAdmin):
     field = ('created_at',)
     list_display = ('created_at',)
+    name = ('name',)
+    id = ('id',)
     pass
 
 

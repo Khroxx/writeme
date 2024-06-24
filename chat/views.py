@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponseRedirect
+from django.http import HttpResponse
 from .models import Chat, Message
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -17,6 +18,10 @@ def index(request):
     """
     renders chat/index.html and handles POST requests for messages
     """
+    if Chat.objects.filter(id=1).exists():
+        pass
+    else:
+        Chat.objects.create(id=1)
     if request.method == 'POST':
         myChat = Chat.objects.get(id=1)
         new_message = Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, reciever=request.user)

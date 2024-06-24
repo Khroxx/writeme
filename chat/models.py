@@ -7,6 +7,7 @@ from datetime import date
 # Chat Model im Backend adminbereich
 class Chat(models.Model):
     created_at = models.DateField(default=date.today)
+    id = 1
 
 # Message Model im Backend adminbereich
 class Message(models.Model):
