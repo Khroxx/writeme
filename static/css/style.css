@@ -1,8 +1,21 @@
+.mdl-layout__content{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
 .page-content{
+    margin: 100px 0 20px 0;
+    position: relative;
     height: 600px;
-    width: 450px;
+    width: 300px;
     border: 1px solid black;
     border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 20px 80px 20px;
+    flex-direction: column;
+    overflow: hidden;
 }
 .login-form, .register-form{
     display: flex;
@@ -16,9 +29,24 @@ button{
     background-color: aqua;
     color: black;
     padding: 5px 5px;
+    cursor: pointer;
 }
-.hallo{
+button:disabled{
+    background-color: grey;
+    color: white;
+    cursor: default;
+}
+.loading {
     color: grey;
+    min-width: 100px;
+}
+.black{
+    color: black;
+    min-width: 100px;
+}
+.red {
+    color: red;
+    min-width: 100px;
 }
 .phone-top{
     position: absolute;
@@ -57,11 +85,18 @@ button{
 }
 .messages-container{
     margin-bottom: 20px;
+    overflow-y: scroll;
+    width: 90%;
+}
+.width{
+    width: 100%;
+    padding: 6px 0;
+    gap: 4px;
 }
 .message-div{
     display: flex;
     flex-direction: row;
-    width: 90%;
+    min-width: 90%;
 }
 .send-button{
     position: absolute;
@@ -69,4 +104,18 @@ button{
     right: 20px;
     cursor: pointer;
     z-index: 3;
+}
+
+@media(max-width: 350px){
+    .page-content{
+        width: 100%;
+        height: 450px;
+    }
+    .chatForm, .register-form, .login-form{
+        width: 90%;
+    }
+    .mdl-textfield{
+        width: 100%;
+    }
+
 }

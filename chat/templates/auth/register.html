@@ -1,5 +1,8 @@
 {%  extends "master.html" %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script defer src="{% static 'js/script.js' %}"></script>
 {% if usernameExists %}
 <p>Benutzer existiert bereits, wähle einen anderen Namen</p>
 {% elif passwordsNotEqual %}
@@ -9,17 +12,17 @@
     {% csrf_token %}
     <input type="hidden" name="redirect" value="{{ redirect }}">
     <div class="mdl-textfield mdl-js-textfield">
-      <input name="username" class="mdl-textfield__input" type="text" id="sample1">
-      <label class="mdl-textfield__label" for="sample1">Name</label>
+      <input name="username" class="mdl-textfield__input" type="text" id="regName" required>
+      <label class="mdl-textfield__label" for="regName">Name</label>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
-      <input name="password" class="mdl-textfield__input" type="password" id="sample1">
-      <label class="mdl-textfield__label" for="sample1">Password</label>
+      <input name="password" class="mdl-textfield__input" type="password" id="regPassword" required>
+      <label class="mdl-textfield__label" for="regPassword">Password</label>
     </div>
     <div class="mdl-textfield mdl-js-textfield">
-        <input name="password-again" class="mdl-textfield__input" type="password" id="sample1">
-        <label class="mdl-textfield__label" for="sample1">Password again</label>
+        <input name="password-again" class="mdl-textfield__input" type="password" id="regPasswordAgain" required>
+        <label class="mdl-textfield__label" for="regPasswordAgain">Password again</label>
       </div>
-    <button>Register</button>
+    <button id="registerButton">Register</button>
   </form>
 {% endblock %}

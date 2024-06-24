@@ -8,76 +8,9 @@
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
     <title>Chatroom</title>
-    <style>
-        .hallo {
-            color: grey;
-            min-width: 100px;
-        }
-        .red {
-            color: red;
-        }
-        .page-content{
-            margin: 100px 100px;
-            position: relative;
-            height: 600px;
-            width: 300px;
-            border: 1px solid black;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 20px 20px 80px 20px;
-            flex-direction: column;
-            overflow: hidden;
-        }
-    </style>
-    <script>
-        let date = formatDate(new Date());
-        
-        async function sendMessage(){
-            let form = new FormData();
-            let token = '{{ csrf_token }}';
-            form.append('textmessage', messageField.value);
-            form.append('csrfmiddlewaretoken', token);
-            try {
-                messageContainer.innerHTML += `<div id="deleteMessage" class="message-div">
-                    <span class="hallo">[${date}]</span> {{ request.user.first_name }}: <span class="hallo">${messageField.value}</span>
-                    </div>`;
-                let response = await fetch('/chat/', {
-                    method: 'POST',
-                    body: form
-                })
-                let json = await response.json();
-                
-                    deleteMessage.remove();
-                    messageContainer.innerHTML += `<div class="message-div">
-                        <span class="hallo">[${date}]</span> {{ request.user.first_name }}: ${messageField.value}
-                        </div>`;
-                
-            } catch (error) {
-                console.error(error);
-                setTimeout(() => {
-                    deleteMessage.remove();
-                    messageContainer.innerHTML += `<div class="message-div">
-                        <span class="red">[${date}]</span> {{ request.user.first_name }}: ${messageField.value}
-                        </div>`;
-                }, 1000);
-            }
-            messageField.value = '';
-        }
-        function formatDate(date) {
-            let day = date.getDate();
-            let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            let month = months[date.getMonth()];
-            let year = date.getFullYear();
-        
-            day = day < 10 ? '0' + day : day;        
-            
-            return month + ' ' + day + ', ' + year;
-        }
-    </script>
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mcenterdl-layout--fixed-header">
