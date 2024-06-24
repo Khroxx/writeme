@@ -1,5 +1,7 @@
 let messageCounter = 0;
 
+
+
 async function sendMessage(){
     let form = new FormData();
     let token = document.querySelector('[name=csrfmiddlewaretoken]').value;

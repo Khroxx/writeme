@@ -3,6 +3,14 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+
+import os
+import sys
+import django
+sys.path.insert(0, os.path.abspath('../'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_chat_app.settings'
+django.setup()
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -14,7 +22,10 @@ release = '2024'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [    
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
