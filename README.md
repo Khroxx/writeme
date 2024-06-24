@@ -1,2 +1,2 @@
 # writeme
- simple_chat
+A simple variations of a chatroom with my first Django Backend
